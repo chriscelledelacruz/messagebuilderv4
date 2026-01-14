@@ -255,7 +255,8 @@ app.post("/api/upload-users", async (req, res) => {
     };
 
     console.log("[CSV IMPORT] Configuring mapping...");
-    await sb("PUT", `/users/imports/${importId}/config`, mappingConfig);
+    // FIX: Changed from PUT to PATCH based on API 405 response
+    await sb("PATCH", `/users/imports/${importId}/config`, mappingConfig);
 
     // Step 3: Optional - Preview first
     console.log("[CSV IMPORT] Generating preview...");
